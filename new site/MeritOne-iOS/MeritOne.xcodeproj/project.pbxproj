@@ -22,6 +22,9 @@
 		C8B50CF8532120D419DA8B56 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB5F1431023CA1CD0F096D /* HomeView.swift */; };
 		DE879300CAC0162E282D9B0E /* MeritOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8560AD93116E56B6F58B9 /* MeritOneApp.swift */; };
 		F336AF3742AFA5BD6731BE24 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23116581A9E0A14AFFD086EB /* Models.swift */; };
+		3E593A69902B53DE85191FD5 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45588D658D2FA99C09AACE0C /* Practice.swift */; };
+		EE04AA1C7D6F2CB7A86B26F6 /* MTModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B16344BF70C5C1EB7D1A13D /* MTModal.swift */; };
+		D539584F39573C4215F0590D /* QuickActionSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A05673DF58F06F4952539E /* QuickActionSheets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		A21FAA7957AB4A3C97986FF5 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		A40A2FAF5147875B54F6294E /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		E38FE0A271DBC9CBD0C6AB32 /* CheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
+		45588D658D2FA99C09AACE0C /* Practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
+		2B16344BF70C5C1EB7D1A13D /* MTModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTModal.swift; sourceTree = "<group>"; };
+		F4A05673DF58F06F4952539E /* QuickActionSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionSheets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 			children = (
 				E38FE0A271DBC9CBD0C6AB32 /* CheckInView.swift */,
 				11DB5F1431023CA1CD0F096D /* HomeView.swift */,
+				F4A05673DF58F06F4952539E /* QuickActionSheets.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -130,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				46A99C879C9994D820F66891 /* Theme.swift */,
+				2B16344BF70C5C1EB7D1A13D /* MTModal.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				803960D967BF7B2A76CF9595 /* Config.swift */,
+				45588D658D2FA99C09AACE0C /* Practice.swift */,
 				8FA8560AD93116E56B6F58B9 /* MeritOneApp.swift */,
 				B09E2FF0B5594F27B874603A /* DesignSystem */,
 				40A43F4CF5BECAA3AD36E0B6 /* Models */,
@@ -244,6 +253,9 @@
 				94596090BAF7F30DD285FFEF /* ShopView.swift in Sources */,
 				7CE977931D850FD2A2F8BA8C /* SupabaseService.swift in Sources */,
 				C58BAF3F98673758F32B4B07 /* Theme.swift in Sources */,
+				3E593A69902B53DE85191FD5 /* Practice.swift in Sources */,
+				EE04AA1C7D6F2CB7A86B26F6 /* MTModal.swift in Sources */,
+				D539584F39573C4215F0590D /* QuickActionSheets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

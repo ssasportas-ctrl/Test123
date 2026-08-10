@@ -1,8 +1,14 @@
 import SwiftUI
 
+private enum QuickAction: Identifiable {
+    case membership, giftCards, refer
+    var id: Self { self }
+}
+
 struct HomeView: View {
     @EnvironmentObject private var store: AppStore
     @State private var showCheckIn = false
+    @State private var activeSheet: QuickAction?
 
     var body: some View {
         ScrollView {
@@ -19,6 +25,13 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showCheckIn) {
             CheckInView()
+        }
+        .sheet(item: $activeSheet) { sheet in
+            switch sheet {
+            case .membership: MembershipSheet()
+            case .giftCards: GiftCardSheet()
+            case .refer: ReferSheet()
+            }
         }
         .overlay {
             if store.isLoading && store.patient == nil {
@@ -41,11 +54,20 @@ struct HomeView: View {
 
     private var quickActions: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 130), spacing: 16)], spacing: 16) {
-            QuickActionTile(icon: "calendar", title: "BOOK")
-            QuickActionTile(icon: "sparkles", title: "MEMBERSHIP")
-            QuickActionTile(icon: "gift.fill", title: "GIFT CARDS")
-            QuickActionTile(icon: "person.2.fill", title: "REFER")
+            Link(destination: PracticeInfo.bookingURL) {
+                QuickActionTile(icon: "calendar", title: "BOOK")
+            }
+            Button { activeSheet = .membership } label: {
+                QuickActionTile(icon: "sparkles", title: "MEMBERSHIP")
+            }
+            Button { activeSheet = .giftCards } label: {
+                QuickActionTile(icon: "gift.fill", title: "GIFT CARDS")
+            }
+            Button { activeSheet = .refer } label: {
+                QuickActionTile(icon: "person.2.fill", title: "REFER")
+            }
         }
+        .buttonStyle(.plain)
     }
 
     private var featuredTreatments: some View {

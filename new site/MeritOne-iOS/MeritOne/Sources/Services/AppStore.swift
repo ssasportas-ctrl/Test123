@@ -11,6 +11,7 @@ final class AppStore: ObservableObject {
     @Published var services: [Service] = []
     @Published var products: [Product] = []
     @Published var activeMembership: PatientMembership?
+    @Published var membershipPlans: [MembershipPlan] = []
 
     @Published var isLoading = false
     @Published var errorMessage: String?
@@ -53,6 +54,7 @@ final class AppStore: ObservableObject {
             async let serviceList = service.fetchServices(practiceId: patient.practiceId)
             async let productList = service.fetchProducts(practiceId: patient.practiceId)
             async let membership = service.fetchActiveMembership(patientId: patient.id)
+            async let membershipPlanList = service.fetchMembershipPlans(practiceId: patient.practiceId)
 
             self.loyaltySettings = try await settings
             self.ledger = try await ledgerEntries
@@ -62,6 +64,7 @@ final class AppStore: ObservableObject {
             self.services = try await serviceList
             self.products = try await productList
             self.activeMembership = try await membership
+            self.membershipPlans = try await membershipPlanList
         } catch {
             errorMessage = error.localizedDescription
         }
