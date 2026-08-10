@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
+import { computeSummary } from '../lib/loyalty'
 
 const AppContext = createContext(null)
 
@@ -112,21 +113,10 @@ export function AppProvider({ children }) {
     [patient, loadEverything],
   )
 
-  const summary = useMemo(() => {
-    const pointsBalance = Math.max(0, ledger.reduce((sum, entry) => sum + entry.points, 0))
-    const visitCount = ledger.filter((entry) => entry.entry_type === 'earn').length
-    const creditBalance = redemptions
-      .filter((r) => r.status === 'active')
-      .reduce((sum, r) => sum + Number(r.credit_value), 0)
-    const nextMilestone = milestones.find((m) => m.visit_count > visitCount) ?? null
-    return {
-      pointsBalance,
-      creditBalance,
-      visitCount,
-      tierLabel: 'Insider',
-      nextMilestone,
-    }
-  }, [ledger, redemptions, milestones])
+  const summary = useMemo(
+    () => computeSummary({ ledger, redemptions, milestones }),
+    [ledger, redemptions, milestones],
+  )
 
   const signInWithOtp = useCallback(async (email, fullName) => {
     const { error: err } = await supabase.auth.signInWithOtp({
