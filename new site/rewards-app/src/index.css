@@ -1,0 +1,85 @@
+:root {
+  --paper: #f6f4ee;
+  --surface: #ffffff;
+  --charcoal: #14130f;
+  --charcoal-deep: #201d16;
+  --ink: #1b1a16;
+  --ink-muted: #7c7669;
+  --gold: #a9814a;
+  --gold-deep: #8a6836;
+  --gold-foil: #e4c989;
+  --hairline: #e7e2d5;
+  --hairline-soft: #efece2;
+  --danger: #a6453a;
+
+  --serif: 'Fraunces', Georgia, 'Iowan Old Style', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  font: 15px/150% var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.eyebrow.muted {
+  color: var(--ink-muted);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(20, 19, 15, 0.03);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+a {
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
