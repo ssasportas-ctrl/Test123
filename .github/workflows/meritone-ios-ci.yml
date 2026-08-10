@@ -1,0 +1,33 @@
+name: MeritOne-iOS CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'new site/MeritOne-iOS/**'
+      - '.github/workflows/meritone-ios-ci.yml'
+  pull_request:
+    paths:
+      - 'new site/MeritOne-iOS/**'
+      - '.github/workflows/meritone-ios-ci.yml'
+
+defaults:
+  run:
+    working-directory: new site/MeritOne-iOS
+
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve simulator destination
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available | grep -m1 "iPhone 16 " | sed -E 's/.*\(([0-9A-F-]+)\).*/\1/')
+          echo "Using simulator $DEVICE_ID"
+          echo "DEVICE_ID=$DEVICE_ID" >> "$GITHUB_ENV"
+      - name: Build and test
+        run: |
+          xcodebuild test \
+            -project MeritOne.xcodeproj \
+            -scheme MeritOne \
+            -destination "platform=iOS Simulator,id=$DEVICE_ID"

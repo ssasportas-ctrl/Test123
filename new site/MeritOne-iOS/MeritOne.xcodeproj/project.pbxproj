@@ -25,6 +25,8 @@
 		3E593A69902B53DE85191FD5 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45588D658D2FA99C09AACE0C /* Practice.swift */; };
 		EE04AA1C7D6F2CB7A86B26F6 /* MTModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B16344BF70C5C1EB7D1A13D /* MTModal.swift */; };
 		D539584F39573C4215F0590D /* QuickActionSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A05673DF58F06F4952539E /* QuickActionSheets.swift */; };
+		4748ED66E22DF3C0A2AD9A54 /* LoyaltyCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1631E5CFBB49E465CBDCEA /* LoyaltyCalculator.swift */; };
+		DDB0CE99725F15674E242F88 /* LoyaltyCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979597B1649C9CFEECB858B7 /* LoyaltyCalculatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +48,20 @@
 		45588D658D2FA99C09AACE0C /* Practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
 		2B16344BF70C5C1EB7D1A13D /* MTModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTModal.swift; sourceTree = "<group>"; };
 		F4A05673DF58F06F4952539E /* QuickActionSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionSheets.swift; sourceTree = "<group>"; };
+		3C1631E5CFBB49E465CBDCEA /* LoyaltyCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyCalculator.swift; sourceTree = "<group>"; };
+		979597B1649C9CFEECB858B7 /* LoyaltyCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyCalculatorTests.swift; sourceTree = "<group>"; };
+		6E4E612E48AAB753429D0218 /* MeritOneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeritOneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXContainerItemProxy section */
+		8E346A1CBFA9617D0BC0049E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7AD4AAE0C63B2614EC22FF07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD2368A4F05AE3CE78519520;
+			remoteInfo = MeritOne;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		444D77E0ED84EA31C8D23878 /* Frameworks */ = {
@@ -57,6 +72,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9DF9D0F587FBA41E81CF926C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,8 +86,17 @@
 			isa = PBXGroup;
 			children = (
 				FDF810F9A1C58D3195477BA2 /* Sources */,
+				3D4ABCEB84959B6D8720D7E0 /* MeritOneTests */,
 				9CFA3DDCB112D172380C0DCD /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		3D4ABCEB84959B6D8720D7E0 /* MeritOneTests */ = {
+			isa = PBXGroup;
+			children = (
+				979597B1649C9CFEECB858B7 /* LoyaltyCalculatorTests.swift */,
+			);
+			path = MeritOneTests;
 			sourceTree = "<group>";
 		};
 		40A43F4CF5BECAA3AD36E0B6 /* Models */ = {
@@ -102,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				1E41F38598F6E8325B3947C3 /* MeritOne.app */,
+				6E4E612E48AAB753429D0218 /* MeritOneTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +161,7 @@
 			children = (
 				88A3A3A22F2975E38BCF2C28 /* AppStore.swift */,
 				8596F14F67425EA6241027C5 /* SupabaseService.swift */,
+				3C1631E5CFBB49E465CBDCEA /* LoyaltyCalculator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -203,6 +236,23 @@
 			productReference = 1E41F38598F6E8325B3947C3 /* MeritOne.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2974FB1DF04264D3EEA01B8E /* MeritOneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D83D55CA3EF71EF24E8A7168 /* Build configuration list for PBXNativeTarget "MeritOneTests" */;
+			buildPhases = (
+				37161741780334188AE3F6D7 /* Sources */,
+				9DF9D0F587FBA41E81CF926C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4673A3AE6431B8BF6D0EDBB1 /* PBXTargetDependency */,
+			);
+			name = MeritOneTests;
+			productName = MeritOneTests;
+			productReference = 6E4E612E48AAB753429D0218 /* MeritOneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -230,6 +280,7 @@
 			projectRoot = "";
 			targets = (
 				DD2368A4F05AE3CE78519520 /* MeritOne */,
+				2974FB1DF04264D3EEA01B8E /* MeritOneTests */,
 			);
 		};
 /* End PBXProject section */
@@ -256,10 +307,27 @@
 				3E593A69902B53DE85191FD5 /* Practice.swift in Sources */,
 				EE04AA1C7D6F2CB7A86B26F6 /* MTModal.swift in Sources */,
 				D539584F39573C4215F0590D /* QuickActionSheets.swift in Sources */,
+				4748ED66E22DF3C0A2AD9A54 /* LoyaltyCalculator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37161741780334188AE3F6D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDB0CE99725F15674E242F88 /* LoyaltyCalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4673A3AE6431B8BF6D0EDBB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD2368A4F05AE3CE78519520 /* MeritOne */;
+			targetProxy = 8E346A1CBFA9617D0BC0049E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1B73ED339E51C11112C1D0D7 /* Debug */ = {
@@ -415,6 +483,48 @@
 			};
 			name = Release;
 		};
+		7234814D3F9EDC6827B06B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.meritmd.meritoneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeritOne.app/MeritOne";
+			};
+			name = Debug;
+		};
+		60829326EB8E33D8C908EFA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.meritmd.meritoneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeritOne.app/MeritOne";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -432,6 +542,15 @@
 			buildConfigurations = (
 				1B73ED339E51C11112C1D0D7 /* Debug */,
 				AEBC5DEE5C6E777A77CCF354 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D83D55CA3EF71EF24E8A7168 /* Build configuration list for PBXNativeTarget "MeritOneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7234814D3F9EDC6827B06B44 /* Debug */,
+				60829326EB8E33D8C908EFA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
