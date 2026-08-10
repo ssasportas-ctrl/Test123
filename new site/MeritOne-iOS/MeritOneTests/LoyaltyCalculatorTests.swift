@@ -38,10 +38,10 @@ final class LoyaltyCalculatorTests: XCTestCase {
         XCTAssertEqual(summary.visitCount, 2)
     }
 
-    func testCreditBalanceIncludesActiveAndRedeemedRedemptions() {
+    func testCreditBalanceIncludesOnlyActiveRedemptions() {
         let redemptions = [redemption(25, status: .active), redemption(10, status: .redeemed), redemption(5, status: .cancelled)]
         let summary = LoyaltyCalculator.summary(ledger: [], redemptions: redemptions, milestones: [])
-        XCTAssertEqual(summary.creditBalance, 35)
+        XCTAssertEqual(summary.creditBalance, 25)
     }
 
     func testPicksNearestMilestoneAboveCurrentVisitCount() {
