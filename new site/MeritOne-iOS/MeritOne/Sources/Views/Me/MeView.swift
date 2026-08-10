@@ -3,6 +3,7 @@ import SwiftUI
 struct MeView: View {
     @EnvironmentObject private var store: AppStore
     @EnvironmentObject private var session: SessionManager
+    @State private var language = "EN"
 
     var body: some View {
         ScrollView {
@@ -21,6 +22,19 @@ struct MeView: View {
                         infoRow(label: "Email", value: store.patient?.email ?? "—")
                         Divider().overlay(MTColor.hairline)
                         infoRow(label: "Referral Code", value: store.patient?.referralCode ?? "—")
+                    }
+                    .padding(18)
+                }
+
+                MTCard {
+                    HStack {
+                        Text("Language").font(.subheadline).foregroundStyle(MTColor.inkMuted)
+                        Spacer()
+                        HStack(spacing: 12) {
+                            languagePill("EN")
+                            Text("|").foregroundStyle(MTColor.hairline)
+                            languagePill("ES")
+                        }
                     }
                     .padding(18)
                 }
@@ -57,6 +71,21 @@ struct MeView: View {
             .padding(24)
         }
         .background(MTColor.backgroundSage.ignoresSafeArea())
+    }
+
+    private func languagePill(_ code: String) -> some View {
+        Button {
+            language = code
+        } label: {
+            Text(code)
+                .font(MTFont.label(12, weight: .bold))
+                .foregroundStyle(language == code ? MTColor.goldDeep : MTColor.inkMuted)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(language == code ? MTColor.gold.opacity(0.12) : Color.clear)
+                .clipShape(Capsule())
+        }
+        .buttonStyle(.plain)
     }
 
     private func infoRow(label: String, value: String) -> some View {
