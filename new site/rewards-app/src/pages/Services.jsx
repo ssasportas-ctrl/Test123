@@ -33,9 +33,22 @@ export default function Services() {
                   <div className="title">{service.name}</div>
                   {service.description && <div className="desc">{service.description}</div>}
                 </div>
-                {service.price != null && (
-                  <div style={{ color: 'var(--gold)', fontWeight: 700 }}>{CURRENCY.format(service.price)}</div>
-                )}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
+                  {service.price != null && (
+                    <div style={{ color: 'var(--gold)', fontWeight: 700 }}>{CURRENCY.format(service.price)}</div>
+                  )}
+                  {service.booking_url && (
+                    <a
+                      className="pill-btn"
+                      style={{ textDecoration: 'none', display: 'inline-block' }}
+                      href={service.booking_url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      BOOK
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </div>

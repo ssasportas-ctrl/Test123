@@ -56,10 +56,21 @@ private struct ServiceRow: View {
                     }
                 }
                 Spacer()
-                if let price = service.price {
-                    Text(price, format: .currency(code: "USD"))
-                        .font(MTFont.label(15, weight: .bold))
-                        .foregroundStyle(MTColor.gold)
+                VStack(alignment: .trailing, spacing: 8) {
+                    if let price = service.price {
+                        Text(price, format: .currency(code: "USD"))
+                            .font(MTFont.label(15, weight: .bold))
+                            .foregroundStyle(MTColor.gold)
+                    }
+                    if let url = URL(string: service.bookingUrl) {
+                        Link("BOOK", destination: url)
+                            .font(MTFont.label(11.5, weight: .bold))
+                            .foregroundStyle(MTColor.goldFoil)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(MTColor.charcoal)
+                            .clipShape(Capsule())
+                    }
                 }
             }
             .padding(18)
