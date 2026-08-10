@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		008DF25ECC66A312019ED6A1 /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DED109A7D8416AA2096C90B /* RewardsView.swift */; };
+		01B3B5013EF0435E9152E680 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803960D967BF7B2A76CF9595 /* Config.swift */; };
+		2754A87A48CB0469B8CE4419 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3A3A22F2975E38BCF2C28 /* AppStore.swift */; };
+		29A4646930BC96E23E6748CA /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40A2FAF5147875B54F6294E /* ServicesView.swift */; };
+		357CBF15EF83F272F1BC855E /* RootSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1DB80D7052DA6535DA9A1F /* RootSplitView.swift */; };
+		40687637CC0201E43AAE0C9E /* CheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FE0A271DBC9CBD0C6AB32 /* CheckInView.swift */; };
+		433E57579E82E836BE212115 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21FAA7957AB4A3C97986FF5 /* AuthView.swift */; };
+		6F5255B488F45ACA0E063C80 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 21519FEA3A77D8A2E4328FCA /* Supabase */; };
+		7CE977931D850FD2A2F8BA8C /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8596F14F67425EA6241027C5 /* SupabaseService.swift */; };
+		8778242C11C85E580D707A9B /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2983F2CE4022F4C70E12EE91 /* MeView.swift */; };
+		94596090BAF7F30DD285FFEF /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637072C59F9B32C27046E96 /* ShopView.swift */; };
+		C58BAF3F98673758F32B4B07 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A99C879C9994D820F66891 /* Theme.swift */; };
+		C8B50CF8532120D419DA8B56 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB5F1431023CA1CD0F096D /* HomeView.swift */; };
+		DE879300CAC0162E282D9B0E /* MeritOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8560AD93116E56B6F58B9 /* MeritOneApp.swift */; };
+		F336AF3742AFA5BD6731BE24 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23116581A9E0A14AFFD086EB /* Models.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11DB5F1431023CA1CD0F096D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1E41F38598F6E8325B3947C3 /* MeritOne.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MeritOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23116581A9E0A14AFFD086EB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		2983F2CE4022F4C70E12EE91 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
+		2DED109A7D8416AA2096C90B /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
+		46A99C879C9994D820F66891 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		7637072C59F9B32C27046E96 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		803960D967BF7B2A76CF9595 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		8596F14F67425EA6241027C5 /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
+		88A3A3A22F2975E38BCF2C28 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		8FA8560AD93116E56B6F58B9 /* MeritOneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeritOneApp.swift; sourceTree = "<group>"; };
+		9B1DB80D7052DA6535DA9A1F /* RootSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSplitView.swift; sourceTree = "<group>"; };
+		A21FAA7957AB4A3C97986FF5 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		A40A2FAF5147875B54F6294E /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
+		E38FE0A271DBC9CBD0C6AB32 /* CheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		444D77E0ED84EA31C8D23878 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F5255B488F45ACA0E063C80 /* Supabase in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		14218C56B414CC63E8CADABE = {
+			isa = PBXGroup;
+			children = (
+				FDF810F9A1C58D3195477BA2 /* Sources */,
+				9CFA3DDCB112D172380C0DCD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		40A43F4CF5BECAA3AD36E0B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				23116581A9E0A14AFFD086EB /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		85CA36BA4C1CF1CF6E53AAFE /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A21FAA7957AB4A3C97986FF5 /* AuthView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		89C02A91459DE8104B5CCF2E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9B1DB80D7052DA6535DA9A1F /* RootSplitView.swift */,
+				85CA36BA4C1CF1CF6E53AAFE /* Auth */,
+				AA58D1D0A3479FEE0E4659C8 /* Home */,
+				B5D2BFE773D8807D4543C958 /* Me */,
+				9F7A2937820FCFEF4F92FC4E /* Rewards */,
+				DDEB136A754B33E3DB086C3B /* Services */,
+				D129DC52326CEBB4077B86E9 /* Shop */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9CFA3DDCB112D172380C0DCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E41F38598F6E8325B3947C3 /* MeritOne.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F7A2937820FCFEF4F92FC4E /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				2DED109A7D8416AA2096C90B /* RewardsView.swift */,
+			);
+			path = Rewards;
+			sourceTree = "<group>";
+		};
+		AA58D1D0A3479FEE0E4659C8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E38FE0A271DBC9CBD0C6AB32 /* CheckInView.swift */,
+				11DB5F1431023CA1CD0F096D /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AA976505488D9CB9F05EB5F4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				88A3A3A22F2975E38BCF2C28 /* AppStore.swift */,
+				8596F14F67425EA6241027C5 /* SupabaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B09E2FF0B5594F27B874603A /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				46A99C879C9994D820F66891 /* Theme.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		B5D2BFE773D8807D4543C958 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				2983F2CE4022F4C70E12EE91 /* MeView.swift */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		D129DC52326CEBB4077B86E9 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				7637072C59F9B32C27046E96 /* ShopView.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		DDEB136A754B33E3DB086C3B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A40A2FAF5147875B54F6294E /* ServicesView.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FDF810F9A1C58D3195477BA2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				803960D967BF7B2A76CF9595 /* Config.swift */,
+				8FA8560AD93116E56B6F58B9 /* MeritOneApp.swift */,
+				B09E2FF0B5594F27B874603A /* DesignSystem */,
+				40A43F4CF5BECAA3AD36E0B6 /* Models */,
+				AA976505488D9CB9F05EB5F4 /* Services */,
+				89C02A91459DE8104B5CCF2E /* Views */,
+			);
+			name = Sources;
+			path = MeritOne/Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD2368A4F05AE3CE78519520 /* MeritOne */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B76786EB2BA22F7C05B2144 /* Build configuration list for PBXNativeTarget "MeritOne" */;
+			buildPhases = (
+				1A780C27338E938AD07AF071 /* Sources */,
+				444D77E0ED84EA31C8D23878 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MeritOne;
+			packageProductDependencies = (
+				21519FEA3A77D8A2E4328FCA /* Supabase */,
+			);
+			productName = MeritOne;
+			productReference = 1E41F38598F6E8325B3947C3 /* MeritOne.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7AD4AAE0C63B2614EC22FF07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = CB86AF81D3424283F11000EC /* Build configuration list for PBXProject "MeritOne" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 14218C56B414CC63E8CADABE;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5EB975E9C5B7499586D6D788 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD2368A4F05AE3CE78519520 /* MeritOne */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A780C27338E938AD07AF071 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2754A87A48CB0469B8CE4419 /* AppStore.swift in Sources */,
+				433E57579E82E836BE212115 /* AuthView.swift in Sources */,
+				40687637CC0201E43AAE0C9E /* CheckInView.swift in Sources */,
+				01B3B5013EF0435E9152E680 /* Config.swift in Sources */,
+				C8B50CF8532120D419DA8B56 /* HomeView.swift in Sources */,
+				8778242C11C85E580D707A9B /* MeView.swift in Sources */,
+				DE879300CAC0162E282D9B0E /* MeritOneApp.swift in Sources */,
+				F336AF3742AFA5BD6731BE24 /* Models.swift in Sources */,
+				008DF25ECC66A312019ED6A1 /* RewardsView.swift in Sources */,
+				357CBF15EF83F272F1BC855E /* RootSplitView.swift in Sources */,
+				29A4646930BC96E23E6748CA /* ServicesView.swift in Sources */,
+				94596090BAF7F30DD285FFEF /* ShopView.swift in Sources */,
+				7CE977931D850FD2A2F8BA8C /* SupabaseService.swift in Sources */,
+				C58BAF3F98673758F32B4B07 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1B73ED339E51C11112C1D0D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7800F5D28A31D997FEF4643B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = MeritOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.meritmd.meritone;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AC04429958DD992FD94BA9C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = MeritOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.meritmd.meritone;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		AEBC5DEE5C6E777A77CCF354 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B76786EB2BA22F7C05B2144 /* Build configuration list for PBXNativeTarget "MeritOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7800F5D28A31D997FEF4643B /* Debug */,
+				AC04429958DD992FD94BA9C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CB86AF81D3424283F11000EC /* Build configuration list for PBXProject "MeritOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B73ED339E51C11112C1D0D7 /* Debug */,
+				AEBC5DEE5C6E777A77CCF354 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5EB975E9C5B7499586D6D788 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		21519FEA3A77D8A2E4328FCA /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5EB975E9C5B7499586D6D788 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 7AD4AAE0C63B2614EC22FF07 /* Project object */;
+}

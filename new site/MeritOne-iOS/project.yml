@@ -1,0 +1,32 @@
+name: MeritOne
+options:
+  bundleIdPrefix: com.meritmd
+  deploymentTarget:
+    iOS: "16.0"
+packages:
+  Supabase:
+    url: https://github.com/supabase/supabase-swift
+    exactVersion: 2.0.0
+targets:
+  MeritOne:
+    type: application
+    platform: iOS
+    sources:
+      - path: MeritOne/Sources
+    resources:
+      - path: MeritOne/Resources
+    info:
+      path: MeritOne/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: MeritOne
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.meritmd.meritone
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: 5.0
+    dependencies:
+      - package: Supabase
+        product: Supabase
