@@ -16,20 +16,21 @@ final class AppStore: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
 
-    private let service = SupabaseService.shared
+    private let service = AppwriteService.shared
 
     var summary: LoyaltySummary {
         LoyaltyCalculator.summary(ledger: ledger, redemptions: redemptions, milestones: milestones)
     }
 
     func loadEverything() async {
-        guard let userId = await service.currentUserId else { return }
+        guard service.hasSession else { return }
         isLoading = true
         errorMessage = nil
         defer { isLoading = false }
 
         do {
-            let patient = try await service.fetchPatient(id: userId)
+            let account = try await service.currentAccount()
+            let patient = try await service.fetchOrCreatePatient(account: account)
             self.patient = patient
 
             async let settings = service.fetchLoyaltySettings(practiceId: patient.practiceId)
@@ -59,7 +60,7 @@ final class AppStore: ObservableObject {
     func redeem(_ reward: Reward) async {
         guard patient != nil else { return }
         do {
-            let redemption = try await service.redeemReward(reward: reward)
+            let redemption = try await service.redeemReward(rewardId: reward.id)
             redemptions.insert(redemption, at: 0)
             await loadEverything() // balance changed server-side; re-sync the ledger
         } catch {

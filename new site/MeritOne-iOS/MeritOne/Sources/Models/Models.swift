@@ -1,28 +1,30 @@
 import Foundation
 
 struct Practice: Codable, Identifiable, Hashable {
-    let id: UUID
+    let id: String
     let name: String
     let createdAt: Date
 
     enum CodingKeys: String, CodingKey {
-        case id, name
+        case id = "$id"
+        case name
         case createdAt = "created_at"
     }
 }
 
 struct Patient: Codable, Identifiable, Hashable {
-    let id: UUID
-    let practiceId: UUID
+    let id: String
+    let practiceId: String
     let fullName: String
     let phone: String?
     let email: String
     let referralCode: String
-    let referredBy: UUID?
+    let referredBy: String?
     let createdAt: Date
 
     enum CodingKeys: String, CodingKey {
-        case id, phone, email
+        case id = "$id"
+        case phone, email
         case practiceId = "practice_id"
         case fullName = "full_name"
         case referralCode = "referral_code"
@@ -32,7 +34,7 @@ struct Patient: Codable, Identifiable, Hashable {
 }
 
 struct LoyaltySettings: Codable, Hashable {
-    let practiceId: UUID
+    let practiceId: String
     let pointsPerDollar: Double
     let pointsToDollarRedemption: Double
     let referralBonusPoints: Int
@@ -52,9 +54,9 @@ enum PointsEntryType: String, Codable {
 }
 
 struct PointsLedgerEntry: Codable, Identifiable, Hashable {
-    let id: UUID
-    let patientId: UUID
-    let practiceId: UUID
+    let id: String
+    let patientId: String
+    let practiceId: String
     let entryType: PointsEntryType
     let points: Int
     let dollarAmount: Double?
@@ -62,7 +64,8 @@ struct PointsLedgerEntry: Codable, Identifiable, Hashable {
     let createdAt: Date
 
     enum CodingKeys: String, CodingKey {
-        case id, points, note
+        case id = "$id"
+        case points, note
         case patientId = "patient_id"
         case practiceId = "practice_id"
         case entryType = "entry_type"
@@ -72,8 +75,8 @@ struct PointsLedgerEntry: Codable, Identifiable, Hashable {
 }
 
 struct Reward: Codable, Identifiable, Hashable {
-    let id: UUID
-    let practiceId: UUID
+    let id: String
+    let practiceId: String
     let title: String
     let description: String?
     let pointsCost: Int
@@ -82,7 +85,8 @@ struct Reward: Codable, Identifiable, Hashable {
     let active: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, title, description, active
+        case id = "$id"
+        case title, description, active
         case practiceId = "practice_id"
         case pointsCost = "points_cost"
         case creditValue = "credit_value"
@@ -95,9 +99,9 @@ enum RedemptionStatus: String, Codable {
 }
 
 struct Redemption: Codable, Identifiable, Hashable {
-    let id: UUID
-    let patientId: UUID
-    let rewardId: UUID
+    let id: String
+    let patientId: String
+    let rewardId: String
     let pointsSpent: Int
     let creditValue: Double
     let code: String
@@ -106,7 +110,8 @@ struct Redemption: Codable, Identifiable, Hashable {
     let createdAt: Date
 
     enum CodingKeys: String, CodingKey {
-        case id, code, status
+        case id = "$id"
+        case code, status
         case patientId = "patient_id"
         case rewardId = "reward_id"
         case pointsSpent = "points_spent"
@@ -117,15 +122,16 @@ struct Redemption: Codable, Identifiable, Hashable {
 }
 
 struct Milestone: Codable, Identifiable, Hashable {
-    let id: UUID
-    let practiceId: UUID
+    let id: String
+    let practiceId: String
     let visitCount: Int
     let bonusPoints: Int
     let label: String
     let active: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, label, active
+        case id = "$id"
+        case label, active
         case practiceId = "practice_id"
         case visitCount = "visit_count"
         case bonusPoints = "bonus_points"
@@ -133,29 +139,31 @@ struct Milestone: Codable, Identifiable, Hashable {
 }
 
 struct MembershipPlan: Codable, Identifiable, Hashable {
-    let id: UUID
-    let practiceId: UUID
+    let id: String
+    let practiceId: String
     let name: String
     let description: String?
     let monthlyPrice: Double?
     let active: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, name, description, active
+        case id = "$id"
+        case name, description, active
         case practiceId = "practice_id"
         case monthlyPrice = "monthly_price"
     }
 }
 
 struct PatientMembership: Codable, Identifiable, Hashable {
-    let id: UUID
-    let patientId: UUID
-    let planId: UUID?
+    let id: String
+    let patientId: String
+    let planId: String?
     let status: String
     let currentPeriodEnd: Date?
 
     enum CodingKeys: String, CodingKey {
-        case id, status
+        case id = "$id"
+        case status
         case patientId = "patient_id"
         case planId = "plan_id"
         case currentPeriodEnd = "current_period_end"
@@ -163,8 +171,8 @@ struct PatientMembership: Codable, Identifiable, Hashable {
 }
 
 struct Service: Codable, Identifiable, Hashable {
-    let id: UUID
-    let practiceId: UUID
+    let id: String
+    let practiceId: String
     let name: String
     let description: String?
     let price: Double?
@@ -175,7 +183,8 @@ struct Service: Codable, Identifiable, Hashable {
     let active: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, name, description, price, category, featured, active
+        case id = "$id"
+        case name, description, price, category, featured, active
         case practiceId = "practice_id"
         case memberPrice = "member_price"
         case bookingUrl = "booking_url"
@@ -183,8 +192,8 @@ struct Service: Codable, Identifiable, Hashable {
 }
 
 struct Product: Codable, Identifiable, Hashable {
-    let id: UUID
-    let practiceId: UUID
+    let id: String
+    let practiceId: String
     let name: String
     let description: String?
     let price: Double
@@ -192,7 +201,8 @@ struct Product: Codable, Identifiable, Hashable {
     let active: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, name, description, price, active
+        case id = "$id"
+        case name, description, price, active
         case practiceId = "practice_id"
         case imageUrl = "image_url"
     }

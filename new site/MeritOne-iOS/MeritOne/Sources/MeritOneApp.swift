@@ -1,5 +1,4 @@
 import SwiftUI
-import Supabase
 
 @main
 struct MeritOneApp: App {
@@ -21,23 +20,35 @@ struct MeritOneApp: App {
     }
 }
 
+/// Appwrite's REST client has no auth-state stream (unlike Supabase's
+/// realtime `authStateChanges`), so sign-in/out just flip this flag directly.
 @MainActor
 final class SessionManager: ObservableObject {
-    @Published var isSignedIn = false
+    @Published var isSignedIn: Bool
 
-    private let service = SupabaseService.shared
+    private let service = AppwriteService.shared
 
     init() {
-        Task { await observeAuthChanges() }
+        isSignedIn = service.hasSession
+        if isSignedIn { Task { await validateStoredSession() } }
     }
 
-    private func observeAuthChanges() async {
-        for await state in await service.client.auth.authStateChanges {
-            if state.event == .signedIn || state.event == .initialSession {
-                isSignedIn = state.session != nil
-            } else if state.event == .signedOut {
-                isSignedIn = false
-            }
+    /// A stored session secret may have expired server-side since last launch.
+    private func validateStoredSession() async {
+        do {
+            _ = try await service.currentAccount()
+        } catch {
+            await service.signOut()
+            isSignedIn = false
         }
+    }
+
+    func markSignedIn() {
+        isSignedIn = true
+    }
+
+    func signOut() async {
+        await service.signOut()
+        isSignedIn = false
     }
 }

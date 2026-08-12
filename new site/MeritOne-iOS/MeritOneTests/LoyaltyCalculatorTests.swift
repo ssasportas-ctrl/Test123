@@ -2,23 +2,23 @@ import XCTest
 @testable import MeritOne
 
 final class LoyaltyCalculatorTests: XCTestCase {
-    private let practiceId = UUID()
-    private let patientId = UUID()
+    private let practiceId = UUID().uuidString
+    private let patientId = UUID().uuidString
 
     private func earn(_ points: Int) -> PointsLedgerEntry {
-        PointsLedgerEntry(id: UUID(), patientId: patientId, practiceId: practiceId, entryType: .earn, points: points, dollarAmount: nil, note: nil, createdAt: Date())
+        PointsLedgerEntry(id: UUID().uuidString, patientId: patientId, practiceId: practiceId, entryType: .earn, points: points, dollarAmount: nil, note: nil, createdAt: Date())
     }
 
     private func ledgerEntry(_ type: PointsEntryType, _ points: Int) -> PointsLedgerEntry {
-        PointsLedgerEntry(id: UUID(), patientId: patientId, practiceId: practiceId, entryType: type, points: points, dollarAmount: nil, note: nil, createdAt: Date())
+        PointsLedgerEntry(id: UUID().uuidString, patientId: patientId, practiceId: practiceId, entryType: type, points: points, dollarAmount: nil, note: nil, createdAt: Date())
     }
 
     private func redemption(_ creditValue: Double, status: RedemptionStatus) -> Redemption {
-        Redemption(id: UUID(), patientId: patientId, rewardId: UUID(), pointsSpent: 0, creditValue: creditValue, code: "CODE", status: status, redeemedAt: nil, createdAt: Date())
+        Redemption(id: UUID().uuidString, patientId: patientId, rewardId: UUID().uuidString, pointsSpent: 0, creditValue: creditValue, code: "CODE", status: status, redeemedAt: nil, createdAt: Date())
     }
 
     private func milestone(_ visitCount: Int, _ bonusPoints: Int) -> Milestone {
-        Milestone(id: UUID(), practiceId: practiceId, visitCount: visitCount, bonusPoints: bonusPoints, label: "Milestone", active: true)
+        Milestone(id: UUID().uuidString, practiceId: practiceId, visitCount: visitCount, bonusPoints: bonusPoints, label: "Milestone", active: true)
     }
 
     func testSumsPointsAcrossLedgerEntries() {

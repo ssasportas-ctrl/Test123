@@ -5,6 +5,7 @@ struct AuthView: View {
     @State private var email = ""
     @State private var fullName = ""
     @State private var otp = ""
+    @State private var pendingUserId: String?
     @State private var stage: Stage = .enterEmail
     @State private var isSubmitting = false
     @State private var errorMessage: String?
@@ -103,10 +104,14 @@ struct AuthView: View {
             defer { isSubmitting = false }
             do {
                 if stage == .enterEmail {
-                    try await SupabaseService.shared.signInWithOTP(email: email, fullName: fullName)
+                    pendingUserId = try await AppwriteService.shared.sendEmailOTP(email: email)
                     stage = .enterCode
-                } else {
-                    try await SupabaseService.shared.verifyOTP(email: email, token: otp)
+                } else if let pendingUserId {
+                    try await AppwriteService.shared.verifyOTP(userId: pendingUserId, secret: otp)
+                    if !fullName.isEmpty {
+                        try? await AppwriteService.shared.updateName(fullName)
+                    }
+                    session.markSignedIn()
                 }
             } catch {
                 errorMessage = error.localizedDescription

@@ -3,10 +3,6 @@ options:
   bundleIdPrefix: com.meritmd
   deploymentTarget:
     iOS: "16.0"
-packages:
-  Supabase:
-    url: https://github.com/supabase/supabase-swift
-    exactVersion: 2.0.0
 targets:
   MeritOne:
     type: application
@@ -27,6 +23,3 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.meritmd.meritone
         TARGETED_DEVICE_FAMILY: "1"
         SWIFT_VERSION: 5.0
-    dependencies:
-      - package: Supabase
-        product: Supabase

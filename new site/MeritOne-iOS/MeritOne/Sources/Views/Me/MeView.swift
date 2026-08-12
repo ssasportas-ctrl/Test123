@@ -52,10 +52,7 @@ struct MeView: View {
                 }
 
                 Button {
-                    Task {
-                        try? await SupabaseService.shared.signOut()
-                        session.isSignedIn = false
-                    }
+                    Task { await session.signOut() }
                 } label: {
                     Text("Sign Out")
                         .font(MTFont.label(15, weight: .bold))
