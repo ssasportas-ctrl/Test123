@@ -110,7 +110,7 @@ export default function Home() {
         ) : (
           <div className="treatment-row">
             {featured.map((service) => (
-              <div key={service.id} className="card treatment-card">
+              <div key={service.$id} className="card treatment-card">
                 <div className="treatment-thumb"><IconSparkle /></div>
                 <div className="title">{service.name}</div>
                 {service.price != null && (

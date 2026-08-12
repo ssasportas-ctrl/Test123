@@ -22,7 +22,7 @@ export default function Rewards() {
         rewards.map((reward) => {
           const canAfford = summary.pointsBalance >= reward.points_cost
           return (
-            <div key={reward.id} className="card row-card">
+            <div key={reward.$id} className="card row-card">
               <div>
                 <div className="title">{reward.title}</div>
                 {reward.description && <div className="desc">{reward.description}</div>}
@@ -44,7 +44,7 @@ export default function Rewards() {
             YOUR REDEMPTIONS
           </div>
           {redemptions.map((r) => (
-            <div key={r.id} className="info-row" style={{ borderBottom: '1px solid var(--hairline)' }}>
+            <div key={r.$id} className="info-row" style={{ borderBottom: '1px solid var(--hairline)' }}>
               <span style={{ fontWeight: 700 }}>{r.code}</span>
               <span className="label">{r.status}</span>
             </div>

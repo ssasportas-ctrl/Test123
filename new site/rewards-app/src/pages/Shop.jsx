@@ -18,7 +18,7 @@ export default function Shop() {
       ) : (
         <div className="product-grid">
           {products.map((product) => (
-            <div key={product.id} className="card product-card">
+            <div key={product.$id} className="card product-card">
               <div className="product-thumb"><IconBag /></div>
               <div className="title" style={{ fontSize: 14 }}>
                 {product.name}

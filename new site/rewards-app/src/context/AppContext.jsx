@@ -1,8 +1,43 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { supabase } from '../lib/supabaseClient'
+import { ID, Permission, Query, Role } from 'appwrite'
+import { account, databases, functions, DATABASE_ID, PRACTICE_ID } from '../lib/appwriteClient'
 import { computeSummary } from '../lib/loyalty'
 
 const AppContext = createContext(null)
+
+const list = (collectionId, queries = []) =>
+  databases.listDocuments({ databaseId: DATABASE_ID, collectionId, queries: [...queries, Query.limit(500)] })
+
+const randomReferralCode = () =>
+  Math.random().toString(16).slice(2, 8).toUpperCase().padEnd(6, '0')
+
+// Patients migrated from Supabase already have a document keyed by their user
+// id; first-time sign-ups create their own, mirroring the old RLS policy
+// `patients_insert_self`.
+async function getOrCreatePatient(user) {
+  try {
+    return await databases.getDocument({
+      databaseId: DATABASE_ID,
+      collectionId: 'patients',
+      documentId: user.$id,
+    })
+  } catch (err) {
+    if (err.code !== 404) throw err
+    return databases.createDocument({
+      databaseId: DATABASE_ID,
+      collectionId: 'patients',
+      documentId: user.$id,
+      data: {
+        practice_id: PRACTICE_ID,
+        full_name: user.name || user.email.split('@')[0],
+        email: user.email,
+        referral_code: randomReferralCode(),
+        created_at: new Date().toISOString(),
+      },
+      permissions: [Permission.read(Role.user(user.$id)), Permission.update(Role.user(user.$id))],
+    })
+  }
+}
 
 export function AppProvider({ children }) {
   const [session, setSession] = useState(null)
@@ -23,31 +58,23 @@ export function AppProvider({ children }) {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session)
-      setAuthLoading(false)
-    })
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, newSession) => {
-      setSession(newSession)
-    })
-    return () => sub.subscription.unsubscribe()
+    account
+      .get()
+      .then((user) => setSession(user))
+      .catch(() => setSession(null))
+      .finally(() => setAuthLoading(false))
   }, [])
 
   const loadEverything = useCallback(async () => {
-    if (!session?.user?.id) return
+    if (!session?.$id) return
     setDataLoading(true)
     setError(null)
     try {
-      const userId = session.user.id
-      const { data: patientRow, error: patientErr } = await supabase
-        .from('patients')
-        .select()
-        .eq('id', userId)
-        .single()
-      if (patientErr) throw patientErr
-      setPatient(patientRow)
+      const userId = session.$id
+      const patientDoc = await getOrCreatePatient(session)
+      setPatient(patientDoc)
 
-      const practiceId = patientRow.practice_id
+      const practiceId = patientDoc.practice_id
       const [
         ledgerRes,
         milestonesRes,
@@ -59,34 +86,26 @@ export function AppProvider({ children }) {
         membershipPlansRes,
         loyaltySettingsRes,
       ] = await Promise.all([
-        supabase.from('points_ledger').select().eq('patient_id', userId).order('created_at', { ascending: false }),
-        supabase.from('milestones').select().eq('practice_id', practiceId).eq('active', true).order('visit_count'),
-        supabase.from('rewards').select().eq('practice_id', practiceId).eq('active', true).order('points_cost'),
-        supabase.from('redemptions').select().eq('patient_id', userId).order('created_at', { ascending: false }),
-        supabase.from('services').select().eq('practice_id', practiceId).eq('active', true),
-        supabase.from('products').select().eq('practice_id', practiceId).eq('active', true),
-        supabase.from('patient_memberships').select().eq('patient_id', userId).eq('status', 'active').maybeSingle(),
-        supabase.from('membership_plans').select().eq('practice_id', practiceId).eq('active', true),
-        supabase.from('loyalty_settings').select().eq('practice_id', practiceId).maybeSingle(),
+        list('points_ledger', [Query.equal('patient_id', userId), Query.orderDesc('created_at')]),
+        list('milestones', [Query.equal('practice_id', practiceId), Query.equal('active', true), Query.orderAsc('visit_count')]),
+        list('rewards', [Query.equal('practice_id', practiceId), Query.equal('active', true), Query.orderAsc('points_cost')]),
+        list('redemptions', [Query.equal('patient_id', userId), Query.orderDesc('created_at')]),
+        list('services', [Query.equal('practice_id', practiceId), Query.equal('active', true)]),
+        list('products', [Query.equal('practice_id', practiceId), Query.equal('active', true)]),
+        list('patient_memberships', [Query.equal('patient_id', userId), Query.equal('status', 'active')]),
+        list('membership_plans', [Query.equal('practice_id', practiceId), Query.equal('active', true)]),
+        list('loyalty_settings', [Query.equal('practice_id', practiceId)]),
       ])
 
-      if (ledgerRes.error) throw ledgerRes.error
-      if (milestonesRes.error) throw milestonesRes.error
-      if (rewardsRes.error) throw rewardsRes.error
-      if (redemptionsRes.error) throw redemptionsRes.error
-      if (servicesRes.error) throw servicesRes.error
-      if (productsRes.error) throw productsRes.error
-      if (membershipPlansRes.error) throw membershipPlansRes.error
-
-      setLedger(ledgerRes.data ?? [])
-      setMilestones(milestonesRes.data ?? [])
-      setRewards(rewardsRes.data ?? [])
-      setRedemptions(redemptionsRes.data ?? [])
-      setServices(servicesRes.data ?? [])
-      setProducts(productsRes.data ?? [])
-      setMembership(membershipRes.data ?? null)
-      setMembershipPlans(membershipPlansRes.data ?? [])
-      setLoyaltySettings(loyaltySettingsRes.data ?? null)
+      setLedger(ledgerRes.documents)
+      setMilestones(milestonesRes.documents)
+      setRewards(rewardsRes.documents)
+      setRedemptions(redemptionsRes.documents)
+      setServices(servicesRes.documents)
+      setProducts(productsRes.documents)
+      setMembership(membershipRes.documents[0] ?? null)
+      setMembershipPlans(membershipPlansRes.documents)
+      setLoyaltySettings(loyaltySettingsRes.documents[0] ?? null)
     } catch (err) {
       setError(err.message ?? String(err))
     } finally {
@@ -101,13 +120,23 @@ export function AppProvider({ children }) {
   const redeem = useCallback(
     async (reward) => {
       if (!patient) return
-      const { data, error: redeemErr } = await supabase.rpc('redeem_reward', { p_reward_id: reward.id })
-      if (redeemErr) {
-        setError(redeemErr.message)
+      // Balance check and point deduction happen server-side so a client can't
+      // mint a redemption without spending points.
+      const execution = await functions.createExecution({
+        functionId: 'redeemReward',
+        body: JSON.stringify({ rewardId: reward.$id }),
+      })
+      let result
+      try {
+        result = JSON.parse(execution.responseBody || '{}')
+      } catch {
+        setError('Redemption failed: unexpected response')
         return
       }
-      setRedemptions((prev) => [data, ...prev])
-      // Balance changed server-side (points deducted); re-sync the ledger.
+      if (result.error) {
+        setError(result.error)
+        return
+      }
       await loadEverything()
     },
     [patient, loadEverything],
@@ -118,22 +147,28 @@ export function AppProvider({ children }) {
     [ledger, redemptions, milestones],
   )
 
-  const signInWithOtp = useCallback(async (email, fullName) => {
-    const { error: err } = await supabase.auth.signInWithOtp({
-      email,
-      options: { data: { role: 'patient', full_name: fullName ?? '' } },
-    })
-    if (err) throw err
+  const signInWithOtp = useCallback(async (email) => {
+    // If the email already has an account the passed userId is ignored, so a
+    // fresh unique id is only used for genuinely new patients.
+    const token = await account.createEmailToken({ userId: ID.unique(), email })
+    return token.userId
   }, [])
 
-  const verifyOtp = useCallback(async (email, token) => {
-    const { error: err } = await supabase.auth.verifyOtp({ email, token, type: 'email' })
-    if (err) throw err
+  const verifyOtp = useCallback(async (userId, secret, fullName) => {
+    await account.createSession({ userId, secret })
+    // Email-token sign-up leaves the account nameless; capture it before the
+    // patient document is created from it.
+    if (fullName) await account.updateName({ name: fullName })
+    setSession(await account.get())
   }, [])
 
   const signOut = useCallback(async () => {
-    await supabase.auth.signOut()
-    setPatient(null)
+    try {
+      await account.deleteSession({ sessionId: 'current' })
+    } finally {
+      setSession(null)
+      setPatient(null)
+    }
   }, [])
 
   const value = {

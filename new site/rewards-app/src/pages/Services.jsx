@@ -28,7 +28,7 @@ export default function Services() {
               {category.toUpperCase()}
             </div>
             {items.map((service) => (
-              <div key={service.id} className="card row-card">
+              <div key={service.$id} className="card row-card">
                 <div>
                   <div className="title">{service.name}</div>
                   {service.description && <div className="desc">{service.description}</div>}

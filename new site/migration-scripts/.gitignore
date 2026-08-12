@@ -1,0 +1,3 @@
+node_modules/
+# Contains patient names and email addresses copied out of Supabase.
+supabase-dump.json

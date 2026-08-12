@@ -7,6 +7,7 @@ export default function Auth() {
   const [email, setEmail] = useState('')
   const [fullName, setFullName] = useState('')
   const [otp, setOtp] = useState('')
+  const [userId, setUserId] = useState(null)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
 
@@ -16,10 +17,10 @@ export default function Auth() {
     setSubmitting(true)
     try {
       if (stage === 'email') {
-        await signInWithOtp(email, fullName)
+        setUserId(await signInWithOtp(email))
         setStage('code')
       } else {
-        await verifyOtp(email, otp)
+        await verifyOtp(userId, otp, fullName)
       }
     } catch (err) {
       setError(err.message ?? String(err))
