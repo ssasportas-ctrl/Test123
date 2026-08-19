@@ -28,19 +28,45 @@ export default function Services() {
               {category.toUpperCase()}
             </div>
             {items.map((service) => (
-              <div key={service.$id} className="card row-card">
-                <div>
+              <div key={service.$id} className="card" style={{ overflow: 'hidden' }}>
+                {service.image_url && (
+                  <img
+                    src={service.image_url}
+                    alt={service.name}
+                    style={{
+                      width: '100%',
+                      height: 200,
+                      objectFit: 'cover',
+                      marginBottom: 12,
+                    }}
+                  />
+                )}
+                <div style={{ padding: service.image_url ? '0 12px 12px' : 0 }}>
                   <div className="title">{service.name}</div>
                   {service.description && <div className="desc">{service.description}</div>}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
-                  {service.price != null && (
-                    <div style={{ color: 'var(--gold)', fontWeight: 700 }}>{CURRENCY.format(service.price)}</div>
+                  {service.duration_minutes && (
+                    <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 4 }}>
+                      {service.duration_minutes} min
+                    </div>
                   )}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: service.image_url ? '0 12px 12px' : 0, gap: 8 }}>
+                  <div>
+                    {service.price != null && (
+                      <div style={{ color: 'var(--gold)', fontWeight: 700 }}>
+                        {CURRENCY.format(service.price)}
+                      </div>
+                    )}
+                    {service.member_price != null && service.member_price < service.price && (
+                      <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>
+                        Member: {CURRENCY.format(service.member_price)}
+                      </div>
+                    )}
+                  </div>
                   {service.booking_url && (
                     <a
                       className="pill-btn"
-                      style={{ textDecoration: 'none', display: 'inline-block' }}
+                      style={{ textDecoration: 'none', display: 'inline-block', flexShrink: 0 }}
                       href={service.booking_url}
                       target="_blank"
                       rel="noreferrer"
