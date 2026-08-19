@@ -5,24 +5,34 @@ import { computeSummary } from '../lib/loyalty'
 
 const AppContext = createContext(null)
 
-// Base44 services with images from Supabase
+// Base44 services organized by category
+// Order: Sunspot/Melasma, Body Contouring, Wellness, Rosacea, Wrinkles/Age Spots
 const BASE44_SERVICES = [
-  {"name":"I-Lipo","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/I%20Lipo%20Pakage.jpg","regular_price":85,"member_price":null,"category":"body","id":"6a85073d6d0721f9b19a283c"},
-  {"name":"I-Lipo Package of 8","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/I%20Lipo%20package%20of%208.jpg","regular_price":700,"member_price":null,"category":"body","id":"6a85073d6d0721f9b19a283d"},
-  {"name":"I-Lipo Package of 10","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/I%20Lipo%20Package%20of%2010.jpg","regular_price":850,"member_price":null,"category":"body","id":"6a85073d6d0721f9b19a283e"},
-  {"name":"RF Microneedling - Arms","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Arms.jpg","regular_price":750,"member_price":null,"category":"body","id":"6a85073d6d0721f9b19a283f"},
-  {"name":"RF Microneedling - Arms Package of 3","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Arms%20package%20of%203.jpg","regular_price":2150,"member_price":null,"category":"body","id":"6a85073d6d0721f9b19a2840"},
-  {"name":"RF Microneedling - Abdomen","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Abdomen.jpg","regular_price":1000,"member_price":null,"category":"body","id":"6a85073d6d0721f9b19a2841"},
-  {"name":"RF Microneedling - Abdomen Package of 3","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Abdomen%20Package%20of%203.jpg","regular_price":2850,"member_price":null,"category":"body","id":"6a85073d6d0721f9b19a2842"},
-  {"name":"Laser Rosacea Treatment","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Laser%20Rosacea.jpg","regular_price":550,"member_price":null,"category":"Laser, Rosacea","id":"6a85073d6d0721f9b19a2843"},
-  {"name":"Laser Rosacea Treatment Package of 3","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/LaserRosacea%20Treatment%20package%20of%203.jpg","regular_price":1485,"member_price":null,"category":"Laser, Rosacea","id":"6a85073d6d0721f9b19a2844"},
-  {"name":"Microneedling + PRP","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Microneedling%2B%20PRP.jpg","regular_price":650,"member_price":null,"category":"Sunspot/Melasma, Wrinkles/Age Spots","id":"6a8506177997139f0e63ca2d"},
+  // Sunspot/Melasma
   {"name":"Vit C Injections - Small Area","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Vit%20C%20Injection%20small.jpg","regular_price":50,"member_price":null,"category":"Sunspot/Melasma","id":"6a850601b540b1424ba31deb"},
   {"name":"Vit C Injections - Medium Area","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Vit%20C%20Injection%20medium.jpg","regular_price":75,"member_price":null,"category":"Sunspot/Melasma","id":"6a850601b540b1424ba31dec"},
   {"name":"Vit C Injections - Large Area","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Vit%20C%20Injection%20large.jpg","regular_price":100,"member_price":null,"category":"Sunspot/Melasma","id":"6a850601b540b1424ba31ded"},
-  {"name":"NAD","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/NAD.jpg","regular_price":100,"member_price":null,"category":"wellness","id":"6a85049e9ad3e3b8893ccb44"},
-  {"name":"B12","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/B12.jpg","regular_price":50,"member_price":null,"category":"wellness","id":"6a85049e9ad3e3b8893ccb45"},
-  {"name":"Glutathione","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Glutathione.jpg","regular_price":80,"member_price":null,"category":"wellness","id":"6a85049e9ad3e3b8893ccb46"},
+  {"name":"Microneedling + PRP","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Microneedling%2B%20PRP.jpg","regular_price":650,"member_price":null,"category":"Sunspot/Melasma","id":"6a8506177997139f0e63ca2d"},
+
+  // Body Contouring
+  {"name":"I-Lipo","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/I%20Lipo%20Pakage.jpg","regular_price":85,"member_price":null,"category":"Body Contouring","id":"6a85073d6d0721f9b19a283c"},
+  {"name":"I-Lipo Package of 8","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/I%20Lipo%20package%20of%208.jpg","regular_price":700,"member_price":null,"category":"Body Contouring","id":"6a85073d6d0721f9b19a283d"},
+  {"name":"I-Lipo Package of 10","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/I%20Lipo%20Package%20of%2010.jpg","regular_price":850,"member_price":null,"category":"Body Contouring","id":"6a85073d6d0721f9b19a283e"},
+  {"name":"RF Microneedling - Abdomen","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Abdomen.jpg","regular_price":1000,"member_price":null,"category":"Body Contouring","id":"6a85073d6d0721f9b19a2841"},
+  {"name":"RF Microneedling - Abdomen Package of 3","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Abdomen%20Package%20of%203.jpg","regular_price":2850,"member_price":null,"category":"Body Contouring","id":"6a85073d6d0721f9b19a2842"},
+
+  // Wellness
+  {"name":"NAD","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/NAD.jpg","regular_price":100,"member_price":null,"category":"Wellness","id":"6a85049e9ad3e3b8893ccb44"},
+  {"name":"B12","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/B12.jpg","regular_price":50,"member_price":null,"category":"Wellness","id":"6a85049e9ad3e3b8893ccb45"},
+  {"name":"Glutathione","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Glutathione.jpg","regular_price":80,"member_price":null,"category":"Wellness","id":"6a85049e9ad3e3b8893ccb46"},
+
+  // Rosacea
+  {"name":"Laser Rosacea Treatment","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/Laser%20Rosacea.jpg","regular_price":550,"member_price":null,"category":"Rosacea","id":"6a85073d6d0721f9b19a2843"},
+  {"name":"Laser Rosacea Treatment Package of 3","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/LaserRosacea%20Treatment%20package%20of%203.jpg","regular_price":1485,"member_price":null,"category":"Rosacea","id":"6a85073d6d0721f9b19a2844"},
+
+  // Wrinkles/Age Spots
+  {"name":"RF Microneedling - Arms","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Arms.jpg","regular_price":750,"member_price":null,"category":"Wrinkles/Age Spots","id":"6a85073d6d0721f9b19a283f"},
+  {"name":"RF Microneedling - Arms Package of 3","image_url":"https://cbdekqzzxysxachifevr.supabase.co/storage/v1/object/public/Azar%20Photo%20Site/RF%20Microneedling%20Arms%20package%20of%203.jpg","regular_price":2150,"member_price":null,"category":"Wrinkles/Age Spots","id":"6a85073d6d0721f9b19a2840"},
 ]
 
 const list = (collectionId, queries = []) =>
