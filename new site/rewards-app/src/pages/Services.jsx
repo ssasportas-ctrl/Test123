@@ -1,4 +1,5 @@
 import { useApp } from '../context/AppContext'
+import CheckoutButton from '../components/CheckoutButton'
 
 const CURRENCY = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
 
@@ -63,16 +64,8 @@ export default function Services() {
                       </div>
                     )}
                   </div>
-                  {service.booking_url && (
-                    <a
-                      className="pill-btn"
-                      style={{ textDecoration: 'none', display: 'inline-block', flexShrink: 0 }}
-                      href={service.booking_url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      BOOK
-                    </a>
+                  {service.price != null && (
+                    <CheckoutButton service={service} />
                   )}
                 </div>
               </div>
