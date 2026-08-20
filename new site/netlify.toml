@@ -1,8 +1,12 @@
 [build]
-command = "cd rewards-app && npm run build"
-publish = "rewards-app/dist"
+  command = "cd rewards-app && npm install && npm run build"
+  publish = "rewards-app/dist"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production]
+  command = "cd rewards-app && npm install && npm run build"
+  publish = "rewards-app/dist"
