@@ -108,12 +108,30 @@ export function AppProvider({ children }) {
         setPatient(patientDoc)
       }
 
-      // Load base44 services with images
-      const servicesData = BASE44_SERVICES.map(s => ({
-        ...s,
-        $id: s.id,
-        price: s.regular_price,
-      }))
+      // Load services from Appwrite with fallback to hardcoded data
+      let servicesData = BASE44_SERVICES
+      try {
+        const appwriteServices = await list('services', [
+          Query.equal('practice_id', PRACTICE_ID),
+          Query.equal('active', true),
+        ])
+        if (appwriteServices.documents && appwriteServices.documents.length > 0) {
+          servicesData = appwriteServices.documents.map(doc => ({
+            ...doc,
+            $id: doc.$id,
+            price: doc.price,
+            regular_price: doc.price,
+            image_url: doc.image_url,
+          }))
+        }
+      } catch (err) {
+        console.warn('Failed to load services from Appwrite, using fallback:', err.message)
+        servicesData = BASE44_SERVICES.map(s => ({
+          ...s,
+          $id: s.id,
+          price: s.regular_price,
+        }))
+      }
 
       setLedger([])
       setMilestones([])

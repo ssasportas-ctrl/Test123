@@ -2,9 +2,10 @@
 // (and matches the Supabase table name so the migration can map 1:1).
 //
 // access:
-//   'catalog' - readable by any signed-in user (services, products, rewards, ...)
-//   'owned'   - per-document read permission granted to the owning patient
-//   'staff'   - staff team only
+//   'catalog'      - readable by any signed-in user (services, products, rewards, ...)
+//   'owned'        - per-document read permission granted to the owning patient (staff CRUD + user read)
+//   'owned-create' - like 'owned' but also allows users to create (for bookings, orders, points_ledger updates)
+//   'staff'        - staff team only
 
 export const COLLECTIONS = [
   {
@@ -107,6 +108,7 @@ export const COLLECTIONS = [
       { key: 'description', type: 'string', size: 2000, required: false },
       { key: 'price', type: 'float', required: false },
       { key: 'member_price', type: 'float', required: false },
+      { key: 'image_url', type: 'string', size: 1024, required: false },
       { key: 'booking_url', type: 'string', size: 1024, required: true },
       { key: 'category', type: 'string', size: 128, required: false },
       { key: 'featured', type: 'boolean', required: true },
@@ -206,5 +208,62 @@ export const COLLECTIONS = [
       { key: 'updated_at', type: 'datetime', required: false },
     ],
     indexes: [{ key: 'idx_patient_status', type: 'key', attributes: ['patient_id', 'status'] }],
+  },
+  {
+    key: 'locations',
+    name: 'Locations',
+    access: 'catalog',
+    attributes: [
+      { key: 'practice_id', type: 'string', size: 64, required: true },
+      { key: 'name', type: 'string', size: 255, required: true },
+      { key: 'address', type: 'string', size: 500, required: true },
+      { key: 'active', type: 'boolean', required: true },
+      { key: 'created_at', type: 'datetime', required: false },
+    ],
+    indexes: [
+      { key: 'idx_practice_active', type: 'key', attributes: ['practice_id', 'active'] },
+    ],
+  },
+  {
+    key: 'bookings',
+    name: 'Bookings',
+    access: 'owned-create',
+    ownerField: 'patient_id',
+    attributes: [
+      { key: 'patient_id', type: 'string', size: 64, required: true },
+      { key: 'practice_id', type: 'string', size: 64, required: true },
+      { key: 'location_id', type: 'string', size: 64, required: true },
+      { key: 'location_name', type: 'string', size: 255, required: true },
+      { key: 'service_ids', type: 'string', size: 2000, required: true },
+      { key: 'service_names', type: 'string', size: 2000, required: true },
+      { key: 'slot_label', type: 'string', size: 255, required: true },
+      { key: 'total_price', type: 'float', required: true },
+      { key: 'points_earned', type: 'integer', required: true },
+      { key: 'status', type: 'string', size: 32, required: true },
+      { key: 'created_at', type: 'datetime', required: false },
+    ],
+    indexes: [
+      { key: 'idx_patient', type: 'key', attributes: ['patient_id'] },
+      { key: 'idx_created', type: 'key', attributes: ['created_at'] },
+    ],
+  },
+  {
+    key: 'orders',
+    name: 'Orders',
+    access: 'owned-create',
+    ownerField: 'patient_id',
+    attributes: [
+      { key: 'patient_id', type: 'string', size: 64, required: true },
+      { key: 'practice_id', type: 'string', size: 64, required: true },
+      { key: 'items', type: 'string', size: 5000, required: true },
+      { key: 'total_price', type: 'float', required: true },
+      { key: 'points_earned', type: 'integer', required: true },
+      { key: 'status', type: 'string', size: 32, required: true },
+      { key: 'created_at', type: 'datetime', required: false },
+    ],
+    indexes: [
+      { key: 'idx_patient', type: 'key', attributes: ['patient_id'] },
+      { key: 'idx_created', type: 'key', attributes: ['created_at'] },
+    ],
   },
 ]
